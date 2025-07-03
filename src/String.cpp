@@ -238,7 +238,7 @@ bool String::operator==(const char* const s) const
     if (s == nullptr)
         return false;
 
-    
+
     return strcmp(c_str(), s) == 0;
 
 }
@@ -254,6 +254,16 @@ bool String::operator==(const String& other) const
     
     return strcmp(c_str(), other.c_str()) == 0;
 
+}
+
+void String::clear()
+{
+    
+    _size = 0;
+
+    if (_data != nullptr) 
+        _data[0] = '\0';
+  
 }
 
 } // end namespace tcii::ex
