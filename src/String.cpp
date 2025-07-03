@@ -1,4 +1,5 @@
 #include "String.h"
+#include <cstring>
 
 namespace tcii::ex
 { // begin namespace tcii::ex
