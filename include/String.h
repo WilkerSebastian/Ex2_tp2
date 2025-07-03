@@ -28,22 +28,22 @@ public:
 
   void clear();
 
-  auto size() const
+  inline auto size() const
   {
     return _size;
   }
 
-  auto capacity() const
+  inline auto capacity() const
   {
     return isShort() ? maxBuffer - 1 : _capacity;
   }
 
-  auto empty() const
+  inline auto empty() const
   {
     return _size == 0;
   }
 
-  const char* c_str() const
+  inline char* c_str() const
   {
     return _data;
   }
@@ -58,13 +58,13 @@ public:
   String& operator +=(const char* const);
   String& operator +=(const String&);
 
-  auto& operator [](unsigned i)
+  inline auto& operator [](unsigned i)
   {
     assert(i <= _size);
     return _data[i];
   }
 
-  auto operator [](unsigned i) const
+  inline auto operator [](unsigned i) const
   {
     assert(i <= _size);
     return _data[i];
@@ -73,12 +73,12 @@ public:
   bool operator ==(const char* const) const;
   bool operator ==(const String&) const;
 
-  auto operator !=(const char* const s) const
+  inline auto operator !=(const char* const s) const
   {
     return !operator ==(s);
   }
 
-  auto operator !=(const String& s) const
+  inline auto operator !=(const String& s) const
   {
     return !operator ==(s);
   }
@@ -94,7 +94,7 @@ private:
     char _buffer[maxBuffer];
   };
 
-  bool isShort() const
+  inline bool isShort() const
   {
     return _size < maxBuffer;
   }
