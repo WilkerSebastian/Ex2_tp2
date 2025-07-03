@@ -7,7 +7,7 @@ INCLUDE	:= include
 LIB		:= lib
 
 LIBRARIES	:=
-EXECUTABLE	:= string
+EXECUTABLE	:= ex2
 
 
 all: $(BIN)/$(EXECUTABLE)
