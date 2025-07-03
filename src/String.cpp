@@ -93,4 +93,53 @@ String::String(String&& other) noexcept
 
 }
 
+String& String::operator=(const String& other)
+{
+
+    if (this == &other)
+        return *this;
+
+
+    if (!isShort())
+        delete[] _data;
+
+    copy(other._data, other._size);
+
+    return *this;
+
+}
+
+String& String::operator=(const char* const s)
+{
+    
+    if (!isShort())
+        delete[] _data;
+
+    if (s == nullptr)
+        copy("", 0);
+
+    else
+        copy(s, strlen(s));
+
+    return *this;
+
+}
+
+String& String::operator=(String&& other) noexcept
+{
+    
+  if (this == &other)
+  
+    return *this;
+  
+  if (!isShort())
+    delete[] _data;
+  
+
+  move(other);
+
+  return *this;
+
+}
+
 } // end namespace tcii::ex
