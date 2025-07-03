@@ -128,17 +128,107 @@ String& String::operator=(const char* const s)
 String& String::operator=(String&& other) noexcept
 {
     
-  if (this == &other)
+    if (this == &other)
+        return *this;
   
+    if (!isShort())
+        delete[] _data;
+    
+
+    move(other);
+
     return *this;
-  
-  if (!isShort())
-    delete[] _data;
+
+}
+
+String String::operator+(const char* const s) const
+{
+
+    String result(*this);
+
+    result += s;
+
+    return result;
+
+}
+
+String String::operator+(const String& other) const
+{
+    
+    String result(*this);
+
+    result += other;
+
+    return result;
+
+}
+
+String& String::operator+=(const char* const s)
+{
+    
+    if (s == nullptr || *s == '\0')
+        return *this;
   
 
-  move(other);
+    const unsigned s_len = strlen(s);
+    const unsigned newSize = _size + s_len;
 
-  return *this;
+    if (newSize > capacity())
+    {
+
+        const unsigned newCapacity = (newSize / maxBuffer + 1) * maxBuffer;
+        char* newData = new char[newCapacity + 1];
+
+        memcpy(newData, _data, _size);
+
+        if (!isShort())
+            delete[] _data;
+        
+        _data = newData;
+        _capacity = newCapacity;
+
+    }
+
+    memcpy(_data + _size, s, s_len);
+
+    _size = newSize;
+    _data[_size] = '\0';
+
+    return *this;
+
+}
+
+String& String::operator+=(const String& other)
+{
+    
+    if (other.empty())
+        return *this;
+
+    const unsigned newSize = _size + other._size;
+
+    if (newSize > capacity())
+    {
+
+        const unsigned newCapacity = (newSize / maxBuffer + 1) * maxBuffer;
+        char* newData = new char[newCapacity + 1];
+
+        memcpy(newData, _data, _size);
+
+        if (!isShort())
+            delete[] _data;
+
+
+        _data = newData;
+        _capacity = newCapacity;
+
+    }
+
+    memcpy(_data + _size, other._data, other._size);
+
+    _size = newSize;
+    _data[_size] = '\0';
+
+    return *this;
 
 }
 
