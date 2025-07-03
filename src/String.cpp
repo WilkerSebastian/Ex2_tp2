@@ -44,4 +44,53 @@ String::move(String& other) noexcept
 
 // insert your code here
 
+String::~String() 
+{
+
+    if (!isShort())
+        delete[] _data;
+
+}
+
+String::String()
+{
+
+    _size = 0;
+    _data = _buffer;
+    _data[0] = '\0';
+
+}
+
+String::String(const char* const s)
+{
+    
+    if (s == nullptr)
+    {
+
+        _size = 0;
+        _data = _buffer;
+        _data[0] = '\0';
+
+        return;
+
+    }
+
+    copy(s, strlen(s));
+
+}
+
+String::String(const String& other)
+{
+    
+    copy(other._data, other._size);
+
+}
+
+String::String(String&& other) noexcept
+{
+
+    move(other);
+
+}
+
 } // end namespace tcii::ex
