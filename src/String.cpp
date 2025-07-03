@@ -232,4 +232,28 @@ String& String::operator+=(const String& other)
 
 }
 
+bool String::operator==(const char* const s) const
+{
+    
+    if (s == nullptr)
+        return false;
+
+    
+    return strcmp(c_str(), s) == 0;
+
+}
+
+bool String::operator==(const String& other) const
+{
+
+    if (_size != other._size)
+        return false;
+  
+    if (empty())
+        return true;
+    
+    return strcmp(c_str(), other.c_str()) == 0;
+
+}
+
 } // end namespace tcii::ex
