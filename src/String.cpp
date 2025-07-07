@@ -99,7 +99,6 @@ String& String::operator=(const String& other)
     if (this == &other)
         return *this;
 
-
     if (!isShort())
         delete[] _data;
 
@@ -133,7 +132,6 @@ String& String::operator=(String&& other) noexcept
   
     if (!isShort())
         delete[] _data;
-    
 
     move(other);
 
@@ -169,7 +167,6 @@ String& String::operator+=(const char* const s)
     if (s == nullptr || *s == '\0')
         return *this;
   
-
     const unsigned s_len = strlen(s);
     const unsigned newSize = _size + s_len;
 
@@ -217,7 +214,6 @@ String& String::operator+=(const String& other)
         if (!isShort())
             delete[] _data;
 
-
         _data = newData;
         _capacity = newCapacity;
 
@@ -237,7 +233,6 @@ bool String::operator==(const char* const s) const
     
     if (s == nullptr)
         return false;
-
 
     return strcmp(c_str(), s) == 0;
 
